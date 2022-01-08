@@ -1,3 +1,5 @@
 .DS_Store
 .vscode/settings.json
 StepFunction_CDK_Functions/**/*
+package-lock.json
+node_modules/**/*

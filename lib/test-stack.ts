@@ -64,7 +64,8 @@ export class CDKSupportDemoRootStack extends cdk.Stack {
           },
           build: {
             commands: [
-              'npm run cdk synth LambdaStack -- -o .',
+              'npx aws-cdk --version',
+              'npx aws-cdk synth LambdaStack -- -o .',
             ],
           },
         },
