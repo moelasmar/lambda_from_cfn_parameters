@@ -3,3 +3,4 @@
 StepFunction_CDK_Functions/**/*
 package-lock.json
 node_modules/**/*
+cdk.out/**/*

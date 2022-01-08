@@ -65,12 +65,12 @@ export class CDKSupportDemoRootStack extends cdk.Stack {
           build: {
             commands: [
               'npx aws-cdk --version',
-              'npx aws-cdk synth LambdaStack -- -o .',
+              'npx aws-cdk synth LambdaStack -o .',
             ],
           },
         },
         artifacts: {
-          files: 'LambdaStack.template.yaml',
+          files: 'LambdaStack.template.json',
         },
       }),
     });
@@ -95,14 +95,15 @@ export class CDKSupportDemoRootStack extends cdk.Stack {
           build: {
             commands: [
               'cd src/LambdaFunc',
-              'pip install -r requirements.txt'
+              'pip install -r requirements.txt -t .'
             ],
           },
         },
         artifacts: {
           files: [
-            'src/LambdaFunc/**/*',
+            '**/*',
           ],
+          'base-directory': 'src/LambdaFunc'
         },
       }),
     });
@@ -125,7 +126,7 @@ export class CDKSupportDemoRootStack extends cdk.Stack {
       actions: [
         new codepipeline_actions.CloudFormationCreateUpdateStackAction({
           actionName: 'Lambda_CFN_Deploy',
-          templatePath: cdkBuildOutput.atPath('LambdaStack.template.yaml'),
+          templatePath: cdkBuildOutput.atPath('LambdaStack.template.json'),
           stackName: 'LambdaStackDeployedName',
           adminPermissions: true,
           parameterOverrides: lambdaCode.assign(lambdaBuildOutput.s3Location),
