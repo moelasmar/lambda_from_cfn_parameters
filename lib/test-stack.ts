@@ -27,7 +27,6 @@ export class CDKSupportDemoRootStack extends cdk.Stack {
     const child = Node.of(lambdaFunction).defaultChild as CfnFunction;
     child.addMetadata(cxapi.ASSET_RESOURCE_METADATA_PATH_KEY, localCodePath);
     child.addMetadata(cxapi.ASSET_RESOURCE_METADATA_PROPERTY_KEY, lambdaFunctionCodeProperty);
-    //child.addMetadata("BuildMethod", "makefile");
     
     const pipelineStack = new cdk.Stack(app, 'PipelineStack');
     const pipeline = new codepipeline.Pipeline(pipelineStack, 'Pipeline');
