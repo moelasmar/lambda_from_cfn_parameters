@@ -64,7 +64,6 @@ export class CDKSupportDemoRootStack extends cdk.Stack {
           },
           build: {
             commands: [
-              'npm run build',
               'npm run cdk synth LambdaStack -- -o .',
             ],
           },
